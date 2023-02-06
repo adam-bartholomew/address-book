@@ -1,30 +1,31 @@
 # Embedded file name: addressbook.py
 import xml.etree.ElementTree as elementTree
 
-def createAddressBook():
+
+def create_address_book():
     addressbook = elementTree.Element('addressbook')
     doc = elementTree.ElementTree(addressbook)
     return doc
 
 
-def addPerson(addressbook, last_name, first_name, birthday, phone_number, street_address):
-    newPerson = findElement(addressbook, last_name, first_name)
-    if newPerson == 1:
+def add_person(addressbook, last_name, first_name, birthday, phone_number, street_address):
+    new_person = find_element(addressbook, last_name, first_name)
+    if new_person == 1:
         return False
     else:
-        newPerson = elementTree.SubElement(addressbook, 'person')
-        newPerson.set('last_name', last_name)
-        newPerson.set('first_name', first_name)
-        newBirthday = elementTree.SubElement(newPerson, 'birthday')
-        newBirthday.text = birthday
-        newPhone = elementTree.SubElement(newPerson, 'phone_number')
-        newPhone.text = phone_number
-        newStreet = elementTree.SubElement(newPerson, 'street_address')
-        newStreet.text = street_address
+        new_person = elementTree.SubElement(addressbook, 'person')
+        new_person.set('last_name', last_name)
+        new_person.set('first_name', first_name)
+        new_birthday = elementTree.SubElement(new_person, 'birthday')
+        new_birthday.text = birthday
+        new_phone = elementTree.SubElement(new_person, 'phone_number')
+        new_phone.text = phone_number
+        new_street = elementTree.SubElement(new_person, 'street_address')
+        new_street.text = street_address
         return True
 
 
-def removePerson(addressbook, last_name, first_name):
+def remove_person(addressbook, last_name, first_name):
     for person in addressbook:
         last = person.get('last_name')
         first = person.get('first_name')
@@ -35,7 +36,7 @@ def removePerson(addressbook, last_name, first_name):
     return False
 
 
-def printPerson(addressbook, last_name, first_name):
+def print_person(addressbook, last_name, first_name):
     people = addressbook.findall('person')
     for element in people:
         last = element.get('last_name')
@@ -55,7 +56,7 @@ def printPerson(addressbook, last_name, first_name):
     return False
 
 
-def printAll(addressbook):
+def print_all(addressbook):
     person_list = []
     people = addressbook.findall('person')
     for person in people:
@@ -64,10 +65,10 @@ def printAll(addressbook):
 
     person_list.sort()
     for name in person_list:
-        printPerson(addressbook, name[0], name[1])
+        print_person(addressbook, name[0], name[1])
 
 
-def findElement(addressbook, last_name, first_name):
+def find_element(addressbook, last_name, first_name):
     for element in addressbook:
         last = element.get('last_name')
         first = element.get('first_name')
@@ -77,46 +78,30 @@ def findElement(addressbook, last_name, first_name):
     return None
 
 
-def updatePerson(addressbook, last_name, first_name, birthday, phone_number, street_address):
+def update_person(addressbook, last_name, first_name, birthday, phone_number, street_address):
     people = addressbook.findall('person')
-    person = 0
-    for element in people:
-        last = element.get('last_name')
-        first = element.get('first_name')
-        person = 0
+    for person in people:
+        last = person.get('last_name')
+        first = person.get('first_name')
         if last == last_name and first == first_name:
-            person = element
-            bText = person.findtext('birthday')
-            bText = birthday
-            bChild = person.find('birthday')
-            bChild.text = bText
-            pText = person.findtext('phone_number')
-            pText = phone_number
-            pChild = person.find('phone_number')
-            pChild.text = pText
-            sText = person.findtext('street_address')
-            sText = street_address
-            sChild = person.find('street_address')
-            sChild.text = sText
+            person.find('birthday').text = birthday
+            person.find('phone_number').text = phone_number
+            person.find('street_address').text = street_address
             return True
-        person += 1
-
-    if person >= 1:
-        return False
+    return False
 
 
-def findGroup(addressbook, title):
+def find_group(addressbook, title):
     groups = addressbook.findall('group')
     for element in groups:
         group_title = element.get('title')
         if group_title == title:
             return 1
-
     return None
 
 
-def addGroup(addressbook, title):
-    new_group = findGroup(addressbook, title)
+def add_group(addressbook, title):
+    new_group = find_group(addressbook, title)
     if new_group == 1:
         return False
     else:
@@ -125,7 +110,7 @@ def addGroup(addressbook, title):
         return True
 
 
-def removeGroup(addressbook, title):
+def remove_group(addressbook, title):
     groups = addressbook.findall('group')
     for group in groups:
         group_title = group.get('title')
@@ -135,36 +120,51 @@ def removeGroup(addressbook, title):
     return False
 
 
-def findMember(addressbook, last_name, first_name):
+def find_member(addressbook, last_name, first_name):
     groups = addressbook.findall('group')
-    for e1 in groups:
-        group = e1
-        members = group.findall('member')
-        for e2 in members:
-            member = e2
+    for group in groups:
+        for member in group.findall('member'):
             last = member.get('last_name')
             first = member.get('first_name')
             if last == last_name and first == first_name:
                 return 1
-            return 0
 
 
-def addMember(addressbook, title, last_name, first_name):
+def add_member(addressbook, title, last_name, first_name):
     groups = addressbook.findall('group')
-    if findMember(addressbook, last_name, first_name) is not None:
-        for e1 in groups:
-            if e1.get('title') == title:
-                group = e1
-                members = group.findall('member')
-                for e2 in members:
-                    last = e2.get('last_name')
-                    first = e2.get('first_name')
+    if find_member(addressbook, last_name, first_name) is None:
+        for group in groups:
+            if group.get('title') == title:
+                for member in group.findall('member'):
+                    last = member.get('last_name')
+                    first = member.get('first_name')
                     if last == last_name and first == first_name:
                         return 1
-                    new_member = elementTree.SubElement(group, 'member')
-                    new_member.set('last_name', last_name)
-                    new_member.set('first_name', first_name)
-                    return 2
+                new_member = elementTree.SubElement(group, 'member')
+                new_member.set('last_name', last_name)
+                new_member.set('first_name', first_name)
+                return 2
+        return 3
+    return 4
 
-            else:
-                return 3
+
+def remove_member(addressbook, title, last_name, first_name):
+    groups = addressbook.findall('group')
+    if find_member(addressbook, last_name, first_name) is not None:
+        for group in groups:
+            if group.get('title') == title:
+                for member in group.findall('member'):
+                    if last_name == member.get('last_name') and first_name == member.get('first_name'):
+                        group.remove(member)
+                        return 1
+                return 2
+        return 3
+    return 4
+
+
+def print_group_members(addressbook):
+    groups = addressbook.findall('group')
+    for group in groups:
+        print(f"\nMEMBERS OF GROUP \"{group.get('title')}\":")
+        for member in group.findall('member'):
+            print(f"{member.get('last_name')}, {member.get('first_name')}")

@@ -1,0 +1,30 @@
+
+<!-- addressbook created by Adam Bartholomew -->
+
+<addressbook>
+	<person last_name="Neutron" first_name="Jimmy">
+		<birthday>July 20 2002</birthday>
+		<phone_number>012-345-6789</phone_number>
+		<street_address>3941 Nickelodeon Road</street_address>
+	</person>
+	<person last_name="Trevelyan" first_name="Alec">
+		<birthday>November 13 1995</birthday>
+		<phone_number>646-006-2532</phone_number>
+		<street_address>17 Ourumov Avenue</street_address>
+	</person>
+	<person last_name="Schrute" first_name="Dwight">
+		<birthday>November 11 1970</birthday>
+		<phone_number>546-425-7378</phone_number>
+		<street_address>1 Schrute Farms</street_address>
+	</person>
+	<person last_name="Salad" first_name="Caesar">
+		<birthday>March 15 44BC</birthday>
+		<phone_number>467-372-8671</phone_number>
+		<street_address>3 Palatine Hill</street_address>
+	</person>
+	<person last_name="Frusciante" first_name="John">
+		<birthday>March 5 1970</birthday>
+		<phone_number>733-468-1111</phone_number>
+		<street_address>78 Stadium Arcadium Street</street_address>
+	</person>
+</addressbook>

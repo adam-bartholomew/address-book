@@ -1,28 +1,0 @@
-
-tpython:S1542"WRename function "createAddressBook" to match the regular expression ^[a-z_][a-z0-9_]*$.(ñ¿Å…üÿÿÿÿ
-spython:S117"\Rename this local variable "newBirthday" to match the regular expression ^[_a-z][a-z0-9_]*$.(åäñ„
-xpython:S117"ZRename this local variable "newPerson" to match the regular expression ^[_a-z][a-z0-9_]*$.(ïãø®8¿°©¡á0
-ppython:S117"YRename this local variable "newPhone" to match the regular expression ^[_a-z][a-z0-9_]*$.(çóü„
-qpython:S117"ZRename this local variable "newStreet" to match the regular expression ^[_a-z][a-z0-9_]*$.(†ÜÊ
-gpython:S1542
-"ORename function "addPerson" to match the regular expression ^[a-z_][a-z0-9_]*$.(Âãíë
-jpython:S1542"RRename function "removePerson" to match the regular expression ^[a-z_][a-z0-9_]*$.(ôÏ±Û
-npython:S1542&"QRename function "printPerson" to match the regular expression ^[a-z_][a-z0-9_]*$.(İá–‹şÿÿÿÿ
-kpython:S1542:"NRename function "printAll" to match the regular expression ^[a-z_][a-z0-9_]*$.(âÑ°×ûÿÿÿÿ
-npython:S1542F"QRename function "findElement" to match the regular expression ^[a-z_][a-z0-9_]*$.(•Í€óşÿÿÿÿ
-gpython:S1854a"JRemove this assignment to local variable 'sText'; the value is never used.(£èÃĞÿÿÿÿÿ
-gpython:S1854]"JRemove this assignment to local variable 'pText'; the value is never used.(­ŸÆâúÿÿÿÿ
-gpython:S1854Y"JRemove this assignment to local variable 'bText'; the value is never used.(–‰•Êùÿÿÿÿ
-npython:S117["WRename this local variable "bChild" to match the regular expression ^[_a-z][a-z0-9_]*$.(ÏÒà—
-rpython:S117Y"VRename this local variable "bText" to match the regular expression ^[_a-z][a-z0-9_]*$.(–‰•Êùÿÿÿÿ
-npython:S117_"WRename this local variable "pChild" to match the regular expression ^[_a-z][a-z0-9_]*$.(Œ½ø¶
-rpython:S117]"VRename this local variable "pText" to match the regular expression ^[_a-z][a-z0-9_]*$.(­ŸÆâúÿÿÿÿ
-spython:S117c"WRename this local variable "sChild" to match the regular expression ^[_a-z][a-z0-9_]*$.(ş¬¢ìúÿÿÿÿ
-rpython:S117a"VRename this local variable "sText" to match the regular expression ^[_a-z][a-z0-9_]*$.(£èÃĞÿÿÿÿÿ
-ipython:S1542P"RRename function "updatePerson" to match the regular expression ^[a-z_][a-z0-9_]*$.(ÜÓì;
-gpython:S1542l"ORename function "findGroup" to match the regular expression ^[a-z_][a-z0-9_]*$.(“©ãÿ
-kpython:S1542v"NRename function "addGroup" to match the regular expression ^[a-z_][a-z0-9_]*$.(äÖ ìÿÿÿÿÿ
-jpython:S1542€"QRename function "removeGroup" to match the regular expression ^[a-z_][a-z0-9_]*$.(›½’
-npython:S1542Š"PRename function "findMember" to match the regular expression ^[a-z_][a-z0-9_]*$.(‚àñÿÿÿÿÿ
-mpython:S1542˜"ORename function "addMember" to match the regular expression ^[a-z_][a-z0-9_]*$.(Ø‰Ÿ¿üÿÿÿÿ
-rpython:S3776˜"TRefactor this function to reduce its Cognitive Complexity from 17 to the 15 allowed.(Ø‰Ÿ¿üÿÿÿÿ

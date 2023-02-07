@@ -91,6 +91,13 @@ def update_person(addressbook, last_name, first_name, birthday, phone_number, st
     return False
 
 
+def find_person(addressbook, last_name, first_name):
+    for person in addressbook.findall('person'):
+        if last_name == person.get('last_name') and first_name == person.get('first_name'):
+            return True
+    return False
+
+
 def find_group(addressbook, title):
     groups = addressbook.findall('group')
     for element in groups:
@@ -120,19 +127,23 @@ def remove_group(addressbook, title):
     return False
 
 
-def find_member(addressbook, last_name, first_name):
+def find_member(addressbook, title, last_name, first_name):
     groups = addressbook.findall('group')
     for group in groups:
-        for member in group.findall('member'):
-            last = member.get('last_name')
-            first = member.get('first_name')
-            if last == last_name and first == first_name:
-                return 1
+        if group.get('title') == title:
+            for member in group.findall('member'):
+                last = member.get('last_name')
+                first = member.get('first_name')
+                if last == last_name and first == first_name:
+                    return 1
 
 
 def add_member(addressbook, title, last_name, first_name):
+    if not find_person(addressbook, last_name, first_name):
+        return 5
+
     groups = addressbook.findall('group')
-    if find_member(addressbook, last_name, first_name) is None:
+    if find_member(addressbook, title, last_name, first_name) is None:
         for group in groups:
             if group.get('title') == title:
                 for member in group.findall('member'):
@@ -150,7 +161,7 @@ def add_member(addressbook, title, last_name, first_name):
 
 def remove_member(addressbook, title, last_name, first_name):
     groups = addressbook.findall('group')
-    if find_member(addressbook, last_name, first_name) is not None:
+    if find_member(addressbook, title, last_name, first_name) is not None:
         for group in groups:
             if group.get('title') == title:
                 for member in group.findall('member'):

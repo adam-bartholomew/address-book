@@ -111,18 +111,21 @@ def menu():
                         doc.write(name)
                         print(f"\nFILE SAVE TO: {name} :SUCCESSFUL")
                     elif name.endswith('.csv'):
-                        f = open(name, 'wt')
-                        f.write('last_name,first_name,birthday,phone_number,street_address,groups\n')
-                        for person in addressbook:
-                            last_name = person.get('last_name')
-                            first_name = person.get('first_name')
-                            birthday = person.findtext('birthday')
-                            phone = person.findtext('phone_number')
-                            street = person.findtext('street_address')
-                            f.write(last_name + ',' + first_name + ',' + birthday + ',' + phone + ',' + street + ',' + 'groups' + '\n')
-
-                        f.close()
-                        print(f"\nFILE SAVE TO: {name} :SUCCESSFUL")
+                        with open(name, 'w') as f:
+                            f.write('last_name,first_name,birthday,phone_number,street_address,groups\n')
+                            for person in addressbook.findall('person'):
+                                last_name = person.get('last_name')
+                                first_name = person.get('first_name')
+                                birthday = person.findtext('birthday')
+                                phone = person.findtext('phone_number')
+                                street = person.findtext('street_address')
+                                groups = "\""
+                                for group in addressbook.findall('group'):
+                                    for member in group.findall('member'):
+                                        if member.get('last_name') == last_name and member.get('first_name') == first_name:
+                                            groups += group.get('title') + ','
+                                f.write(last_name + ',' + first_name + ',' + birthday + ',' + phone + ',' + street + ',' + groups.rstrip(',') + "\"" + '\n')
+                        print(f"\nSAVE SUCCESSFUL TO: {name}")
                     else:
                         print(f"\nPLEASE ENTER A VALID FILE WITH CORRECT EXTENSION")
                 else:
@@ -169,15 +172,16 @@ def menu():
                     group = ab.find_group(addressbook, title)
                     if group == 1:
                         new = ab.add_member(addressbook, title, last_name, first_name)
-                        if new == 1:
-                            print()
-                            print(f"MEMBER: {last_name}, {first_name} :ALREADY EXISTS IN GROUP: {title}")
+                        if new == 1 or new == 4:
+                            print(f"\nPERSON \"{last_name}, {first_name}\" IS ALREADY A MEMBER OF THE GROUP \"{title}\"")
                         elif new == 2:
-                            print(f"\nMEMBER: {last_name}, {first_name} :ADDED TO GROUP: {title}")
-                        elif new == 4:
-                            print(f"\nMEMBER {last_name}, {first_name} DOES NOT EXIST")
+                            print(f"\nPERSON \"{last_name}, {first_name}\" ADDED AS A MEMBER TO THE GROUP \"{title}\"")
+                        elif new == 3:
+                            print(f"\nGROUP \"{title}\" DOES NOT EXIST")
+                        elif new == 5:
+                            print(f"\nPERSON \"{last_name}, {first_name}\" DOES NOT EXIST")
                     else:
-                        print(f"\nGROUP: {title} :DOES NOT EXIST")
+                        print(f"\nGROUP \"{title}\" DOES NOT EXIST")
                 else:
                     print(MSG_NO_ADDRESSBOOK)
             elif selected == 'L':
